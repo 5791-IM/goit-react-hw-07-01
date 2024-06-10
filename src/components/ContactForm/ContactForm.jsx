@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 import css from "./ContactForm.module.css";
 
 const ContactForm = () => {
@@ -23,9 +23,9 @@ const ContactForm = () => {
       .required("Number is required"),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values.name, values.number));
-    resetForm();
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values));
+    actions.resetForm();
   };
 
   return (
